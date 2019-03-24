@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='hvac-it',
+    name='hvac_ir',
     version='0.1.0',
     description='library to encode and decode IR codes for HVAC systems',
     long_description=long_description,
@@ -15,7 +15,7 @@ setup(
     author='Luca Lesinigo',
     author_email='luca@lesinigo.it',
     license='GPL v2',
-    url='https://github.com/lesinigo/python-hvac-ir',
+    url='https://github.com/lesinigo/python-hvac_ir',
     platforms=['any'],
     classifiers=[
         "Development Status :: 3 - Alpha",

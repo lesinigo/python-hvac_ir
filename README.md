@@ -1,4 +1,4 @@
-# python-hvac-ir
+# python-hvac_ir
 A library to encode and decode IR codes for HVAC systems.
 
 The scope of this library is to encode and decode representations of IR codes for HVAC systems, _not_ to implement the actual receiving and transmission of infrared codes.
