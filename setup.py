@@ -14,7 +14,9 @@ setup(
     long_description_content_type="text/markdown",
     author='Luca Lesinigo',
     author_email='luca@lesinigo.it',
+    license='GPL v2',
     url='https://github.com/lesinigo/python-hvac-ir',
+    platforms=['any'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
