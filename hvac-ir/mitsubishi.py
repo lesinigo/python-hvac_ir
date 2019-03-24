@@ -2,6 +2,7 @@
 
 import datetime
 
+
 class MitsubishiCommand_W001CP(object):
 
     _header = '00100011' + '11001011' + '00100110' + '00100001' + '00000000'

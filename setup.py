@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Setuptools configuration file"""
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
