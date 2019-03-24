@@ -47,8 +47,8 @@ class MitsubishiCommand_W001CP(object):
                  'temperature=%s' % self.temperature,
                  'fan=%s' % self.fan,
                  'vane=%s' % self.vane]
-        me = '<MitsubishiCommand_W001CP(' + ', '.join(parms) + ')>'
-        return me
+        my_str = '<MitsubishiCommand_W001CP(' + ', '.join(parms) + ')>'
+        return my_str
 
     def encode(self, lsb=True):
         # bytes 0~4: constant header
@@ -206,8 +206,9 @@ class MitsubishiCommand_W001CP(object):
             xor_value = int("".join(str(i) for i in xor_byte), 2)
             if xor_value != (255 ^ my_value):
                 checksum = 'check_BAD'
-        return {'power': power, 'hvac_mode': hvac_mode, 'temperature': temperature,
-                'fan': fan, 'vane': vane, 'checksum': checksum}
+        return {'power': power, 'hvac_mode': hvac_mode, 'temperature': temperature, 'fan': fan,
+                'vane': vane, 'timer_mode': timer_mode, 'timer_on': timer_on,
+                'timer_off': timer_off, 'checksum': checksum}
 
 class MitsubishiCommand_SG14D(object):
     '''Mitsubishi SG14D remote control
@@ -232,7 +233,7 @@ class MitsubishiCommand_SG14D(object):
 
     # pyslinger settings
     pyslinger_protocol = "NEC"
-    # see also https://github.com/r45635/HVAC-IR-Control/blob/master/python/hvac_ircontrol/mitsubishi.py
+    # see https://github.com/r45635/HVAC-IR-Control/blob/master/python/hvac_ircontrol/mitsubishi.py
     pyslinger_protocol_config = dict(frequency=38000,
                                      duty_cycle=0.5,
                                      leading_pulse_duration=3500,   # 3400
@@ -262,8 +263,8 @@ class MitsubishiCommand_SG14D(object):
                  'vane=%s' % self.vane,
                  'econocool=%s' % self.econocool,
                  'isee=%s' % self.isee]
-        me = '<MitsubishiCommand_SG14D(' + ', '.join(parms) + ')>'
-        return me
+        my_str = '<MitsubishiCommand_SG14D(' + ', '.join(parms) + ')>'
+        return my_str
 
     def encode(self, lsb=True):
         # bytes 0~4: constant header
@@ -457,7 +458,7 @@ class MitsubishiCommand_SG14D(object):
         # byte 6: HVAC mode + iSee
         if binary_dump[48] != 0 or binary_dump[53:56] != (0, 0, 0):
             raise ValueError('wrong HVAC mode')
-        isee = True if binary_dump[49] else False
+        isee = bool(binary_dump[49])
         if binary_dump[50:53] == (1, 0, 0):
             hvac_mode = 'auto'
         elif binary_dump[50:53] == (0, 0, 1):
@@ -500,7 +501,7 @@ class MitsubishiCommand_SG14D(object):
         # byte 12: start time
         # byte 13: timer mode
         # byte 14: constants + econocool (bits 112 -> 120)
-        econocool = True if binary_dump[114] else False     # third bit is econocool
+        econocool = bool(binary_dump[114])                  # third bit is econocool
         # bytes 14x & 15~16: constants                      # fourth bit of byte 14 and onwards
         footer = ''.join(str(_) for _ in binary_dump[115:136])
         if footer != cls._footer:
