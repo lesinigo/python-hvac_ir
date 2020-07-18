@@ -1,0 +1,22 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: syntax-check
+  image: codewaysa/python3-dev:3.8.3_20200623
+  commands:
+    - pylint -E $( ./setup.py --name )
+
+- name: PyLint
+  image: codewaysa/python3-dev:3.8.3_20200623
+  commands:
+  - pylint $( ./setup.py --name )
+  depends_on: [ 'syntax-check' ]
+
+- name: isort
+  image: codewaysa/python3-dev:3.8.3_20200623
+  commands:
+  - isort --check-only --diff --recursive $( ./setup.py --name )
+  depends_on: [ 'syntax-check' ]
