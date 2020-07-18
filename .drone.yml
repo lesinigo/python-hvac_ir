@@ -22,3 +22,10 @@ steps:
   - isort --check-only --diff --recursive  hvac_ir
   depends_on: [ 'syntax-check' ]
   failure: ignore
+
+- name: black
+  image: codewaysa/python3-dev:3.8.3_20200623
+  commands:
+  - black --target-version py38 -l 120 --diff --check  hvac_ir
+  depends_on: [ 'syntax-check' ]
+  failure: ignore
