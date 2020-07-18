@@ -14,9 +14,11 @@ steps:
   commands:
   - pylint  hvac_ir
   depends_on: [ 'syntax-check' ]
+  failure: ignore
 
 - name: isort
   image: codewaysa/python3-dev:3.8.3_20200623
   commands:
   - isort --check-only --diff --recursive  hvac_ir
   depends_on: [ 'syntax-check' ]
+  failure: ignore
