@@ -7,16 +7,16 @@ steps:
 - name: syntax-check
   image: codewaysa/python3-dev:3.8.3_20200623
   commands:
-    - pylint -E $( ./setup.py --name )
+  - pylint -E hvac_ir
 
 - name: PyLint
   image: codewaysa/python3-dev:3.8.3_20200623
   commands:
-  - pylint $( ./setup.py --name )
+  - pylint  hvac_ir
   depends_on: [ 'syntax-check' ]
 
 - name: isort
   image: codewaysa/python3-dev:3.8.3_20200623
   commands:
-  - isort --check-only --diff --recursive $( ./setup.py --name )
+  - isort --check-only --diff --recursive  hvac_ir
   depends_on: [ 'syntax-check' ]
