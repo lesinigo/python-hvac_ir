@@ -7,4 +7,4 @@ This is currently just a minimum-possible-effort implementation for the author's
 
 ## requirements
 
-* [Python 3](https://www.python.org) (tested on >= 3.5.3)
+* [Python 3](https://www.python.org) (tested on >= 3.7.3)

@@ -22,8 +22,9 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
         "Topic :: Home Automation",
     ],
     packages=find_packages(),
+    python_requires='>=3.7',
 )
